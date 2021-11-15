@@ -1,5 +1,5 @@
 {
-  "description": "ILIAS chatroom base docker image (Experimental Beta Version)",
+  "description": "ILIAS base chatroom docker image (Experimental Beta Version)",
   "keywords": [
     "alpine",
     "base",
