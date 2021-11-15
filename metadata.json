@@ -1,0 +1,14 @@
+{
+  "description": "ILIAS chatroom base docker image (Experimental Beta Version)",
+  "keywords": [
+    "alpine",
+    "base",
+    "beta",
+    "chatroom",
+    "docker",
+    "experimental",
+    "ilias",
+    "nodejs"
+  ],
+  "homepage": "https://github.com/fluxapps/FluxIliasChatroomBase"
+}
