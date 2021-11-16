@@ -1,12 +1,12 @@
 ARG NODEJS_VERSION
 FROM node:$NODEJS_VERSION-alpine
 
-LABEL org.opencontainers.image.source="https://github.com/fluxapps/FluxIliasChatroomBase"
+LABEL org.opencontainers.image.source="https://github.com/fluxapps/flux-ilias-chatroom-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
 
-COPY . /FluxIliasChatroom
+COPY . /flux-ilias-chatroom-base
 
-ENTRYPOINT ["/FluxIliasChatroom/bin/entrypoint.sh"]
+ENTRYPOINT ["/flux-ilias-chatroom-base/bin/entrypoint.sh"]
 
 ENV ILIAS_COMMON_CLIENT_ID default
 ENV ILIAS_FILESYSTEM_DATA_DIR /var/iliasdata
