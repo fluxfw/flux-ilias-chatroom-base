@@ -4,10 +4,12 @@
     "alpine",
     "base",
     "beta",
+    "chat",
     "chatroom",
     "docker",
     "experimental",
     "ilias",
+    "node",
     "nodejs"
   ],
   "homepage": "https://github.com/fluxapps/flux-ilias-chatroom-base"
