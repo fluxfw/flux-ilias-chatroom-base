@@ -1,5 +1,6 @@
-ARG NODEJS_VERSION
-FROM node:$NODEJS_VERSION-alpine
+ARG NODEJS_IMAGE=node:current-alpine
+
+FROM $NODEJS_IMAGE
 
 LABEL org.opencontainers.image.source="https://github.com/fluxapps/flux-ilias-chatroom-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
