@@ -6,7 +6,7 @@ build:
   script:
     - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
       for nodejs_version in $NODEJS_VERSIONS; do
-        docker build . --pull --build-arg NODEJS_VERSION=$nodejs_version -t $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
+        docker build . --pull --build-arg NODEJS_IMAGE=node:$nodejs_version-alpine -t $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
         docker push $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
       done;
       docker logout $CI_REGISTRY;
