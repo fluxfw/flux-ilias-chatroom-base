@@ -1,16 +1,14 @@
 {
-  "description": "ILIAS base chatroom docker image (Experimental Beta Version)",
-  "topics": [
-    "alpine",
-    "base",
-    "beta",
-    "chat",
-    "chatroom",
-    "docker",
-    "experimental",
-    "ilias",
-    "node",
-    "nodejs"
-  ],
-  "homepage": "https://github.com/fluxapps/flux-ilias-chatroom-base"
+    "description": "ILIAS base chatroom docker image",
+    "topics": [
+        "alpine",
+        "base",
+        "chat",
+        "chatroom",
+        "docker",
+        "ilias",
+        "node",
+        "nodejs"
+    ],
+    "homepage": "https://github.com/fluxapps/flux-ilias-chatroom-base"
 }

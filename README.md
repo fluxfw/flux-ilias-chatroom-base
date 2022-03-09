@@ -1,6 +1,6 @@
 # flux-ilias-chatroom-base
 
-Experimental Beta Version
+ILIAS base chatroom docker image
 
 First look at [flux-ilias](https://github.com/fluxapps/flux-ilias)
 
