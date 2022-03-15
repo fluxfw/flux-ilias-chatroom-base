@@ -1,47 +1,47 @@
 variables:
-  NODEJS_VERSIONS: "10 12 14"
+    NODEJS_VERSIONS: "10 12 14"
 
 build:
-  stage: build
-  image: docker:stable
-  script:
-    - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
-      for nodejs_version in $NODEJS_VERSIONS; do
-        docker build . --pull --build-arg NODEJS_IMAGE=node:$nodejs_version-alpine -t $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
-        docker push $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
-      done;
-      docker logout $CI_REGISTRY;
-  only:
-    - develop
+    stage: build
+    image: docker:stable
+    script:
+        - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
+          for nodejs_version in $NODEJS_VERSIONS; do
+              docker build . --pull --build-arg NODEJS_IMAGE=node:$nodejs_version-alpine -t $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
+              docker push $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
+          done;
+          docker logout $CI_REGISTRY;
+    only:
+        - develop
 
 flux-publish-utils:
-  stage: build
-  image: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/flux-publish-utils:latest
-  script:
-    - "false"
-  only:
-    - main
+    stage: build
+    image: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/flux-publish-utils:latest
+    script:
+        - "false"
+    only:
+        - main
 
 publish:
-  stage: deploy
-  image: docker:stable
-  script:
-    - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
-      for nodejs_version in $NODEJS_VERSIONS; do
-        docker pull $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
-      done;
-      docker logout $CI_REGISTRY;
-    - echo -n $DEV_DOCKER_REGISTRY_PASSWORD | docker login -u $DEV_DOCKER_REGISTRY_USER --password-stdin $DEV_DOCKER_REGISTRY_URL;
-      for nodejs_version in $NODEJS_VERSIONS; do
-        docker tag $CI_REGISTRY_IMAGE:nodejs$nodejs_version $DEV_DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
-        docker push $DEV_DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
-      done;
-      docker logout $DEV_DOCKER_REGISTRY_URL;
-    - echo -n $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY_URL;
-      for nodejs_version in $NODEJS_VERSIONS; do
-        docker tag $DEV_DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version $DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
-        docker push $DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
-      done;
-      docker logout $DOCKER_REGISTRY_URL;
-  only:
-    - main
+    stage: deploy
+    image: docker:stable
+    script:
+        - echo -n $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY;
+          for nodejs_version in $NODEJS_VERSIONS; do
+              docker pull $CI_REGISTRY_IMAGE:nodejs$nodejs_version;
+          done;
+          docker logout $CI_REGISTRY;
+        - echo -n $DEV_DOCKER_REGISTRY_PASSWORD | docker login -u $DEV_DOCKER_REGISTRY_USER --password-stdin $DEV_DOCKER_REGISTRY_URL;
+          for nodejs_version in $NODEJS_VERSIONS; do
+              docker tag $CI_REGISTRY_IMAGE:nodejs$nodejs_version $DEV_DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
+              docker push $DEV_DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
+          done;
+          docker logout $DEV_DOCKER_REGISTRY_URL;
+        - echo -n $DOCKER_REGISTRY_PASSWORD | docker login -u $DOCKER_REGISTRY_USER --password-stdin $DOCKER_REGISTRY_URL;
+          for nodejs_version in $NODEJS_VERSIONS; do
+              docker tag $DEV_DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version $DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
+              docker push $DOCKER_REGISTRY_URL/flux-ilias/chatroom-base:nodejs$nodejs_version;
+          done;
+          docker logout $DOCKER_REGISTRY_URL;
+    only:
+        - main
