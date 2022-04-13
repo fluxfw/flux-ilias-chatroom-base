@@ -21,10 +21,5 @@ fi
 
 start_chatroom="node $ILIAS_WEB_DIR/Modules/Chatroom/chat/chat.js $ILIAS_CHATROOM_SERVER_CONFIG_FILE $ILIAS_CHATROOM_CLIENT_CONFIG_FILE"
 
-echo "Unset ILIAS env variables (For not show in PHP variables or log files)"
-for var in $(printenv | grep "ILIAS_" | sed 's/=.*$//'); do
-    unset "$var"
-done
-
 echo "Start chatroom"
 exec $start_chatroom
