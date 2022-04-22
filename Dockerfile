@@ -1,6 +1,5 @@
-ARG NODEJS_IMAGE=node:current-alpine
-
-FROM $NODEJS_IMAGE
+ARG NODEJS_VERSION
+FROM node:$NODEJS_VERSION-alpine
 
 LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-chatroom-base"
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
@@ -22,3 +21,6 @@ EXPOSE $ILIAS_CHATROOM_PORT
 ENTRYPOINT ["/flux-ilias-chatroom-base/bin/docker-entrypoint.sh"]
 
 COPY . /flux-ilias-chatroom-base
+
+ARG COMMIT_SHA
+LABEL org.opencontainers.image.revision="$COMMIT_SHA"
