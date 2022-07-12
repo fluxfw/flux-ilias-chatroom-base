@@ -1,11 +1,4 @@
 ARG NODEJS_VERSION
-
-FROM alpine:latest AS build
-
-COPY . /build/flux-ilias-chatroom-base
-
-RUN (cd /build && tar -czf flux-ilias-chatroom-base.tar.gz flux-ilias-chatroom-base)
-
 FROM node:$NODEJS_VERSION-alpine
 
 LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-chatroom-base"
@@ -27,7 +20,7 @@ EXPOSE $ILIAS_CHATROOM_PORT
 
 ENTRYPOINT ["/flux-ilias-chatroom-base/bin/docker-entrypoint.sh"]
 
-COPY --from=build /build /
+COPY . /flux-ilias-chatroom-base
 
 ARG COMMIT_SHA
 LABEL org.opencontainers.image.revision="$COMMIT_SHA"
