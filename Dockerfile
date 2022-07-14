@@ -1,8 +1,7 @@
 ARG NODEJS_VERSION
 FROM node:$NODEJS_VERSION-alpine
 
-LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-chatroom-base"
-LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
+LABEL org.opencontainers.image.source="https://github.com/fluxfw/flux-ilias-chatroom-base"
 
 RUN getent group www-data || addgroup -g 82 www-data && adduser -u 82 -D -S -G www-data www-data
 
