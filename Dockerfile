@@ -15,7 +15,7 @@ USER www-data:www-data
 ENV ILIAS_CHATROOM_PORT 8080
 EXPOSE $ILIAS_CHATROOM_PORT
 
-ENTRYPOINT ["/flux-ilias-chatroom-base/bin/docker-entrypoint.sh"]
+ENTRYPOINT ["/flux-ilias-chatroom-base/bin/server.sh"]
 
 COPY . /flux-ilias-chatroom-base
 

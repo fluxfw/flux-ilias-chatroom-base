@@ -19,7 +19,5 @@ else
     exit 1
 fi
 
-start_chatroom="node $ILIAS_WEB_DIR/Modules/Chatroom/chat/chat.js $ILIAS_CHATROOM_SERVER_CONFIG_FILE $ILIAS_CHATROOM_CLIENT_CONFIG_FILE"
-
 echo "Start chatroom"
-exec $start_chatroom
+exec node "$ILIAS_WEB_DIR/Modules/Chatroom/chat/chat.js" "$ILIAS_CHATROOM_SERVER_CONFIG_FILE" "$ILIAS_CHATROOM_CLIENT_CONFIG_FILE"
