@@ -18,6 +18,3 @@ EXPOSE $ILIAS_CHATROOM_PORT
 ENTRYPOINT ["/flux-ilias-chatroom-base/bin/server.sh"]
 
 COPY . /flux-ilias-chatroom-base
-
-ARG COMMIT_SHA
-LABEL org.opencontainers.image.revision="$COMMIT_SHA"
