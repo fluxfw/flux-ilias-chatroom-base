@@ -12,9 +12,6 @@ VOLUME $ILIAS_FILESYSTEM_DATA_DIR
 
 USER www-data:www-data
 
-ENV ILIAS_CHATROOM_PORT 8080
-EXPOSE $ILIAS_CHATROOM_PORT
-
 ENTRYPOINT ["/flux-ilias-chatroom-base/bin/server.sh"]
 
 COPY . /flux-ilias-chatroom-base
